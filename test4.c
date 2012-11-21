@@ -12,6 +12,11 @@ int list_length(struct list *li);
 int list_num(struct list *li, int num);
 void list_show(struct list *li);
 
+void print_atai(int n);
+void print_value(int n);
+void print_twice(int n);
+void foreach(struct list *li, void fun(int));
+
 int main(void){
 
 	struct list *list1,*list2, *list3, *list4;
@@ -28,6 +33,9 @@ int main(void){
 	printf("%d\n",num);
 	num2 = list_num(list4, 8);
 	list_show(list4);
+	foreach(list4, print_atai);
+	foreach(list4, print_value);
+	foreach(list4, print_twice);
 
 	return 0;
 }
@@ -62,6 +70,21 @@ int list_num(struct list *li, int num){
 		next = next->next;
 	}
 	return -1;
+}
+
+void print_atai(int n) { printf("値: %d\n", n); }
+void print_value(int n) { printf("value: %d\n", n); }
+void print_twice(int n) { printf("%d\n", n * 2); }
+
+void
+foreach(struct list *li, void fun(int))
+{
+	struct list *l = li;
+	while (l != NULL) {
+		fun(l->num);
+		l = l->next;
+	}
+	return;
 }
 
 void list_show(struct list *li){
