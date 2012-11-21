@@ -10,6 +10,7 @@ struct list {
 struct list* add_list(int num, struct list *old);
 int list_length(struct list *li);
 int list_num(struct list *li, int num);
+void list_show(struct list *li);
 
 int main(void){
 
@@ -22,14 +23,11 @@ int main(void){
 	list3 = add_list(9,list2);
 	list4 = add_list(2,list3);
 
-	printf("%d(%p)\n",list1->num,list1->next);
-	printf("%d(%p)\n",list2->num,list2->next);
-	printf("%d(%p)\n",list3->num,list3->next);
 	printf("%d(%p)\n",list4->num,list4->next);
 	num = list_length(list4);
 	printf("%d\n",num);
 	num2 = list_num(list4, 8);
-	printf("%d番目\n",num2);
+	list_show(list4);
 
 	return 0;
 }
@@ -64,4 +62,12 @@ int list_num(struct list *li, int num){
 		next = next->next;
 	}
 	return -1;
+}
+
+void list_show(struct list *li){
+	struct list *next = li;
+	while(next != NULL){ 
+		printf("値%d\n",next->num);
+		next = next->next;
+	}
 }
