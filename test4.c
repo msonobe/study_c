@@ -16,10 +16,13 @@ void print_atai(int n);
 void print_value(int n);
 void print_twice(int n);
 void foreach(struct list *li, void fun(int));
+void list_insert(struct list *previous, struct list *add, struct list *next);
+void get_data(struct list *list, int n);
+/*void list_insert2(struct list *li, int n, int v);*/
 
 int main(void){
 
-	struct list *list1,*list2, *list3, *list4;
+	struct list *list1,*list2, *list3, *list4, *list5;
 	int num = 0;
 	int num2 = 0;
 
@@ -36,6 +39,11 @@ int main(void){
 	foreach(list4, print_atai);
 	foreach(list4, print_value);
 	foreach(list4, print_twice);
+
+	list5 = add_list(3,list4);
+	list_insert(list4,list5,list3);
+	list_show(list4);
+	get_data(list4,8);
 
 	return 0;
 }
@@ -93,4 +101,31 @@ void list_show(struct list *li){
 		printf("値%d\n",next->num);
 		next = next->next;
 	}
+}
+
+void
+list_insert(struct list *previous, struct list *add, struct list *next){
+	struct list *pr = previous;
+	struct list *ad = add;
+	struct list *ne = next;
+	pr->next = add;
+	ad->next = ne;
+}
+
+void get_data(struct list *list, int n){
+	struct list *next = list;
+	int m = n;
+	int i = 0;
+	for(i =0; i<=m; i++){ 
+		if(i == m){
+			printf("値→ %d\n",next->num);
+			break;
+		}
+		if(next->next == NULL){
+			printf("値→ なし\n",next->num);
+			break;
+		}
+		next = next->next;
+	}
+
 }
