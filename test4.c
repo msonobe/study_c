@@ -44,6 +44,7 @@ int main(void){
 	list_insert(list4,list5,list3);
 	list_show(list4);
 	get_data(list4,8);
+	get_data(list4,4);
 
 	return 0;
 }
@@ -116,16 +117,15 @@ void get_data(struct list *list, int n){
 	struct list *next = list;
 	int m = n;
 	int i = 0;
-	for(i =0; i<=m; i++){ 
-		if(i == m){
-			printf("値→ %d\n",next->num);
-			break;
-		}
-		if(next->next == NULL){
-			printf("値→ なし\n",next->num);
-			break;
-		}
+
+	for(i =0; next != NULL; i++){ 
+		if(i == m) break;
 		next = next->next;
 	}
 
+	if (next != NULL) {
+		printf("値→ %d\n",next->num);
+	} else {
+		printf("値→ なし\n");
+	}
 }
