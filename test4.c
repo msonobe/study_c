@@ -17,8 +17,9 @@ void print_value(int n);
 void print_twice(int n);
 void foreach(struct list *li, void fun(int));
 void list_insert(struct list *previous, struct list *add, struct list *next);
-void get_data(struct list *list, int n);
+int get_data(struct list *list, int n);
 /*void list_insert2(struct list *li, int n, int v);*/
+struct list* array_list(int array[],int num );
 
 int main(void){
 
@@ -43,8 +44,20 @@ int main(void){
 	list5 = add_list(3,list4);
 	list_insert(list4,list5,list3);
 	list_show(list4);
-	get_data(list4,8);
-	get_data(list4,4);
+
+	int get_data_num = 0;
+	get_data_num = get_data(list4,0);
+	if(get_data_num == -1){
+		printf ("値なし\n");
+	}else{
+		printf ("値→ %d\n",get_data_num);
+	}
+
+	int ary[5] = {5,2,4,1,3};
+	int num_list = 5;
+	printf ("%d\n",sizeof ary);
+	struct list *listm =array_list(ary,num_list);
+	list_show(listm);
 
 	return 0;
 }
@@ -113,7 +126,7 @@ list_insert(struct list *previous, struct list *add, struct list *next){
 	ad->next = ne;
 }
 
-void get_data(struct list *list, int n){
+int get_data(struct list *list, int n){
 	struct list *next = list;
 	int m = n;
 	int i = 0;
@@ -124,8 +137,30 @@ void get_data(struct list *list, int n){
 	}
 
 	if (next != NULL) {
-		printf("値→ %d\n",next->num);
+		return next->num;
 	} else {
-		printf("値→ なし\n");
+		return -1; 
 	}
+}
+
+struct list * array_list(int array[],int num){
+	
+	/*struct list *li1,*li2, *li3, *li4, *li5;
+	li1 = add_list(array[0],NULL);
+	li2 = add_list(array[1],li1);
+	li3 = add_list(array[2],li2);
+	li4 = add_list(array[3],li3);
+	li5 = add_list(array[4],li4);
+	list_show(li5);*/
+	int n =0;
+	struct list *listn;
+	printf("%d\n",sizeof array);
+	for(n =num-1; n >= 0; n--){ 
+		if(n == num-1){ 
+			listn = add_list(array[n],NULL);
+		}else{
+			listn = add_list(array[n],listn);
+		}
+	}
+	return listn;
 }
