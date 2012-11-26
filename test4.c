@@ -20,6 +20,7 @@ void list_insert(struct list *previous, struct list *add, struct list *next);
 int get_data(struct list *list, int n);
 /*void list_insert2(struct list *li, int n, int v);*/
 struct list* array_list(int array[],int num );
+void joint_list(struct list *li_1, struct list *li_2);
 
 int main(void){
 
@@ -58,6 +59,15 @@ int main(void){
 	printf ("%d\n",sizeof ary);
 	struct list *listm =array_list(ary,num_list);
 	list_show(listm);
+
+	int ary2[5] = {6,8,7,9,4};
+	int num_list2 = 5;
+	struct list *listl =array_list(ary2,num_list2);
+	list_show(listl);
+
+	printf ("\n");
+	joint_list(listl,listm);
+	list_show(listl);
 
 	return 0;
 }
@@ -144,23 +154,17 @@ int get_data(struct list *list, int n){
 }
 
 struct list * array_list(int array[],int num){
-	
-	/*struct list *li1,*li2, *li3, *li4, *li5;
-	li1 = add_list(array[0],NULL);
-	li2 = add_list(array[1],li1);
-	li3 = add_list(array[2],li2);
-	li4 = add_list(array[3],li3);
-	li5 = add_list(array[4],li4);
-	list_show(li5);*/
-	int n =0;
-	struct list *listn;
-	printf("%d\n",sizeof array);
+	int n ;
+	struct list *listn = NULL;
 	for(n =num-1; n >= 0; n--){ 
-		if(n == num-1){ 
-			listn = add_list(array[n],NULL);
-		}else{
-			listn = add_list(array[n],listn);
-		}
+		listn = add_list(array[n],listn);
 	}
 	return listn;
+}
+
+void joint_list(struct list *li_1, struct list *li_2){
+	while(li_1->next != NULL){ 
+		li_1 = li_1->next;
+	}
+	li_1->next = li_2;
 }
