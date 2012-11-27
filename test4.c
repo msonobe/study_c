@@ -21,6 +21,7 @@ int get_data(struct list *list, int n);
 /*void list_insert2(struct list *li, int n, int v);*/
 struct list* array_list(int array[],int num );
 void joint_list(struct list *li_1, struct list *li_2);
+void list_insert2(struct list *list, int n,int num);
 
 int main(void){
 
@@ -67,6 +68,10 @@ int main(void){
 
 	printf ("\n");
 	joint_list(listl,listm);
+	list_show(listl);
+
+	printf ("\n");
+	list_insert2(listl,6,8); 
 	list_show(listl);
 
 	return 0;
@@ -167,4 +172,20 @@ void joint_list(struct list *li_1, struct list *li_2){
 		li_1 = li_1->next;
 	}
 	li_1->next = li_2;
+}
+
+void list_insert2(struct list *list, int n,int num){
+	struct list *next = list;
+	struct list *new = add_list(num,NULL);
+	int i = 0;
+
+	for(i =0; next != NULL; i++){ 
+		if(i == n) break;
+		next = next->next;
+	}
+
+	if (next != NULL) {
+		new->next = next->next;
+		next->next = new;
+	}
 }
