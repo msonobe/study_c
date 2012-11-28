@@ -14,17 +14,15 @@ int main(void){
 	char *array_chimei[5] = {"東京","新横浜","熱海","浜松","名古屋"};
 	struct chimei *tokyo,*shinyokohama,*atami,*hamamatu,*nagoya;
 
-	/* ループで作成できていない*/
-	tokyo = make_list(array_chimei[0], NULL);
-	shinyokohama = make_list(array_chimei[1], tokyo);
-	atami = make_list(array_chimei[2], shinyokohama);
-	hamamatu = make_list(array_chimei[3], atami);
-	nagoya = make_list(array_chimei[4], hamamatu);
-	show_list(nagoya,5);
+	struct chimei *chi =NULL;
+	int i = 0;
+	for(i =0; i <5; i++){
+		chi = make_list(array_chimei[i], chi);
+	}
+	show_list(chi,5);
 
-	/* 指定した番号から1つずれてしまう*/
-	add_list(nagoya, 1, "静岡");
-	show_list(nagoya, 6);
+	add_list(chi, 1, "静岡");
+	show_list(chi, 6);
 
 	return 0;
 }
@@ -51,7 +49,7 @@ void add_list(struct chimei *chi, int addnum, char *addname){
 		chi = chi->next;
 	}
 	struct chimei *shizuoka;
-	shizuoka = make_list(addname, chi);
+	shizuoka = make_list(addname, NULL);
 	shizuoka->next = chi->next;
 	chi->next = shizuoka;
 }
