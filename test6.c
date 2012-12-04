@@ -46,9 +46,11 @@ void add_list(struct chimei *chi, char *name, int num){
 	}
 	shizuoka = make_list(name, NULL);
 	shizuoka->next = chi->next;
-	shizuoka->previous = chi;
 	chi->next = shizuoka;
-
+	chi = chi->next;/* 静岡に移る */
+	chi = chi->next;/* 静岡のnextに移る*/
+	shizuoka->previous = chi->previous;
+	chi->previous = shizuoka;
 }
 
 void show_prevlist(struct chimei *chi, int num){
