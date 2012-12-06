@@ -44,13 +44,12 @@ void add_list(struct chimei *chi, char *name, int num){
 	for(j = 0; j < num ; j++){
 		chi = chi->next;
 	}
+	struct chimei *chi2 = chi->next;
 	shizuoka = make_list(name, NULL);
-	shizuoka->next = chi->next;
+	shizuoka->next = chi2;
+	shizuoka->previous = chi;
 	chi->next = shizuoka;
-	chi = chi->next;/* 静岡に移る */
-	chi = chi->next;/* 静岡のnextに移る*/
-	shizuoka->previous = chi->previous;
-	chi->previous = shizuoka;
+	chi2->previous = shizuoka;
 }
 
 void show_prevlist(struct chimei *chi, int num){
