@@ -16,6 +16,7 @@ int main(void){
 
 int rand_ary(int max_num, int ary_num, int ary[]){
 	int n = 0;
+	srand((unsigned)time(NULL));
 	for(n = 0; n<= ary_num; n++){
 		ary[n] = rand()%max_num+1;
 	}
