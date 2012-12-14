@@ -19,5 +19,10 @@ int main(void){
 	mem7 = unshift(array_num[6], mem6);
 	
 	foreach(print1,mem7);
+
+	struct list *list1 = calloc(1,sizeof(struct list));
+	list1->previous = mem1;
+	list1->next = mem7;
+	
 	return;
 }
