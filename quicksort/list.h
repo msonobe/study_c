@@ -5,10 +5,11 @@ struct mems {
 };
 
 struct list {
-	int num;
-	struct mems *next;
-	struct mems *previous;
+	struct mems *head;
+	struct mems *last;
 };
 
-struct mems* unshift(int num, struct mems *me);
-void foreach(void(*func)(int num),struct mems *mem);
+void foreach(void(*func)(int num),struct list *li);
+struct list* new_list();
+void unshift(struct list *li, int nums);
+void push(struct list *li, int nums);
