@@ -4,25 +4,28 @@
 
 
 struct list* null(){
-	struct list *li = calloc(1,sizeof(struct list));
-	li->next = NULL;
-	return li;
+	return NULL;
 }
 
 int empty(struct list *li){
-	if(li->next == NULL){
+	if(li == NULL){
 		return 1;
 	}else{
 		return 0;
 	}
 }
 
-struct list* push(struct list *li, int num){
-	li->num = num;
-	li->next = li;
-	return li;
+struct list* push(int num,struct list *li){
+	struct list *l = calloc(1,sizeof(struct list));
+	l->num = num;
+	l->next = li;
+	return l;
 }
 
-struct list* head(int ary[]){ 
-		
+int head(struct list *li){ 
+	return li->num;
+}
+
+struct list* tail(struct list *li){
+	return li->next;
 }
