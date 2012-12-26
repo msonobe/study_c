@@ -1,12 +1,25 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include "list.h"
+#include "listtools.h"
+
+void print1(int num){
+	printf("%d\n",num);
+}
+
+int randomInt(){
+	int r = rand();
+	return r%10;
+}
 
 int main(void){
 
-	struct list *li = push(4,push(3,null()));
-	int num = head(li);
-	printf("%d\n",num);
+	srand(time(NULL));
+	struct list *li1 = makelist(randomInt,5);
+	struct list *li2 = makelist(randomInt,5);
 
+	foreach(print1,li1);
+	foreach(print1,li2);
 	return 0;
 }
+
