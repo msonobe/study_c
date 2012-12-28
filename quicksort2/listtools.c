@@ -28,3 +28,15 @@ struct list* makelist(int(*func)(),int n){
 	}
 	return push(func(),makelist(func,n-1));
 }
+
+struct list* filter(int(*func)(int num1,int num2),int num3, struct list *li){
+	if(empty(li)){
+		return li;
+	}else{
+		if(func(num3,head(li))){
+			return push(head(li),filter(func,num3,tail(li)));
+		}else{
+			return filter(func,num3,tail(li));
+		}
+	}
+}

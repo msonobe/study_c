@@ -12,6 +12,14 @@ int randomInt(){
 	return r%10;
 }
 
+int bigger(int num1, int num2){
+	if(num2 > num1){
+		return 1;
+	}else{
+		return 0;
+	}
+}
+
 int main(void){
 
 	srand(time(NULL));
@@ -23,6 +31,10 @@ int main(void){
 	printf("\n");
 	
 	foreach(print1,concat(li1,li2));
+	struct list *li3 = concat(li1,li2);
+	printf("\n");
+
+	foreach(print1,filter(bigger,5,li3));
 	return 0;
 }
 
