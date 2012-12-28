@@ -20,6 +20,9 @@ int main(void){
 
 	foreach(print1,li1);
 	foreach(print1,li2);
+	printf("\n");
+	
+	foreach(print1,concat(li1,li2));
 	return 0;
 }
 

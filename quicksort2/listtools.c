@@ -14,8 +14,12 @@ void foreach(void(*func)(int num),struct list *li){
 	}
 }
 
-void concat(struct list *li1, struct list *li2){
-	li1->next = li2;
+struct list* concat(struct list *li1, struct list *li2){
+	if(empty(li1)){
+		return li2;
+	}else{
+		return push(head(li1),concat(tail(li1),li2));
+	}
 }
 
 struct list* makelist(int(*func)(),int n){
