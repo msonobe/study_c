@@ -20,6 +20,16 @@ int bigger(int num1, int num2){
 	}
 }
 
+int smaller(int num1, int num2){
+	if(num2 <= num1){
+		return 1;
+	}else{
+		return 0;
+	}
+}
+
+struct list* quicksort(struct list *li);
+
 int main(void){
 
 	srand(time(NULL));
@@ -35,6 +45,29 @@ int main(void){
 	printf("\n");
 
 	foreach(print1,filter(bigger,5,li3));
+	printf("\n");
+
+	foreach(print1,filter(smaller,5,li3));
+	printf("\n");
+
+	foreach(print1,li3);
+	printf("\n");
+
+	foreach(print1,quicksort(li3));
+	printf("\n");
 	return 0;
 }
 
+struct list* quicksort(struct list *li){
+	if(empty(li)){
+		return li;
+	}else{
+		int h = head(li);
+		struct list *t = tail(li);
+		struct list *s = filter(smaller,h,t);
+		struct list *b = filter(bigger,h,t);
+		struct list *qss = quicksort(s);
+		struct list *qsb = quicksort(b);
+		return concat(qss,push(h,qsb));
+	}
+}

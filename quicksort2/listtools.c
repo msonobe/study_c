@@ -40,3 +40,4 @@ struct list* filter(int(*func)(int num1,int num2),int num3, struct list *li){
 		}
 	}
 }
+
